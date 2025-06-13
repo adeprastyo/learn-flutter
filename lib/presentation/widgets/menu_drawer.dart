@@ -37,14 +37,6 @@ class MenuDrawer extends StatelessWidget {
                       Navigator.pushReplacementNamed(context, '/');
                     },
                   ),
-                  // ListTile(
-                  //   leading: const Icon(Icons.document_scanner_rounded),
-                  //   title: const Text('Halaman 1'),
-                  //   onTap: () {
-                  //     Navigator.pop(context);
-                  //     Navigator.pushReplacementNamed(context, '/halaman1');
-                  //   },
-                  // ),
                   ListTile(
                     leading: const Icon(Icons.movie),
                     title: const Text('Movies'),

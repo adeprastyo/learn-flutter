@@ -36,29 +36,26 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Padding(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: const <Widget>[
-                    Icon(
-                      Icons.person,
-                      size: 100,
-                    ),
-                    Text(
-                      "LOGIN",
-                      style:
-                          TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+              const Icon(
+                Icons.person,
+                size: 80,
               ),
+              const SizedBox(height: 20),
+              const Text(
+                "LOGIN",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 40),
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -71,9 +68,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               TextField(
                 controller: _passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.lock),
                   hintText: "Enter your password",
@@ -84,20 +82,28 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
+              const SizedBox(height: 30),
               SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _login,
-                    style:
-                        ElevatedButton.styleFrom(shape: const StadiumBorder()),
-                    child: const Text("Login"),
-                  )),
-              Text(
-                _error,
-                style: const TextStyle(color: Colors.red),
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: _login,
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                  ),
+                  child: const Text("Login"),
+                ),
               ),
+              const SizedBox(height: 20),
+              if (_error.isNotEmpty)
+                Text(
+                  _error,
+                  style: const TextStyle(color: Colors.red),
+                ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
