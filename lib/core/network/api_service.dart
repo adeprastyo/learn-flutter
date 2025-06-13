@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../data/models/movie_model.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiService {
-  static const String accessToken =
-      'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MDA5OWFkYjEyNmM2ZmEwMTE2N2MzNGQ0ZDFjNDQ2OCIsIm5iZiI6MTc0OTY5MzU2MC4yNjQ5OTk5LCJzdWIiOiI2ODRhMzQ3OGYwNGFhYWZiNzgzZmQ4MTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.bkJz3U-dBxGGCKnyQF1tBaAOgtElOBMGKn7_JYAcZ6Y';
-  static const String baseUrl = 'https://api.themoviedb.org/3';
+  final String accessToken = dotenv.env['API_KEY']!;
+  final String baseUrl = dotenv.env['BASE_URL']!;
 
   Future<List<MovieModel>> fetchPopularMovies() async {
     final response = await http.get(
