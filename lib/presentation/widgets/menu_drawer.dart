@@ -45,6 +45,14 @@ class MenuDrawer extends StatelessWidget {
                       Navigator.pushReplacementNamed(context, '/movies');
                     },
                   ),
+                  ListTile(
+                    leading: const Icon(Icons.memory),
+                    title: const Text('Local State'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.pushReplacementNamed(context, '/local-state');
+                    },
+                  ),
                 ],
               ),
             ),
