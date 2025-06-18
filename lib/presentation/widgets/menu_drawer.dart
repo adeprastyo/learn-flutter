@@ -8,25 +8,45 @@ class MenuDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          const SizedBox(
+          SizedBox(
             width: double.infinity,
             child: DrawerHeader(
               margin: EdgeInsets.zero,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Icon(Icons.account_circle,
+                          size: 50, color: Colors.white),
+                      IconButton(
+                        icon: Icon(Icons.edit,
+                            size: 20, color: Colors.grey.shade200),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pushReplacementNamed(
+                              context, '/edit-profile');
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Username',
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                ],
               ),
             ),
           ),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(color: Colors.lightBlue.shade50),
+              decoration: BoxDecoration(color: Colors.blueGrey.shade50),
               child: Column(
                 children: [
                   ListTile(

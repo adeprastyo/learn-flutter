@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/presentation/pages/edit_profile.dart';
 import 'package:flutter_application_1/presentation/pages/home_page.dart';
 import 'package:flutter_application_1/presentation/pages/local_state_page.dart';
 import 'package:flutter_application_1/presentation/pages/login.dart';
@@ -15,11 +16,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Flutter Demo', initialRoute: "/login", routes: {
-      "/": (context) => const MyHomePage(title: "Home"),
-      "/login": (context) => const LoginPage(title: "Woi Login Page"),
-      "/movies": (context) => const MoviePage(),
-      "/local-state": (context) => const LocalState(),
-    });
+    return MaterialApp(
+        title: 'Flutter Demo',
+        // initialRoute: "/login",
+        initialRoute: "/",
+        routes: {
+          "/": (context) => const MyHomePage(title: "Home"),
+          "/login": (context) => const LoginPage(title: "Woi Login Page"),
+          "/movies": (context) => const MoviePage(),
+          "/local-state": (context) => const LocalState(),
+          "/edit-profile": (context) => const EditProfile(),
+        });
   }
 }
