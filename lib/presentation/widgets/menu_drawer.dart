@@ -73,6 +73,15 @@ class MenuDrawer extends StatelessWidget {
                       Navigator.pushReplacementNamed(context, '/local-state');
                     },
                   ),
+                  ListTile(
+                    leading: const Icon(Icons.memory),
+                    title: const Text('Provider State'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.pushReplacementNamed(
+                          context, '/provider-fake-api');
+                    },
+                  ),
                 ],
               ),
             ),

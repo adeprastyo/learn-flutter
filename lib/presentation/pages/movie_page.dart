@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/presentation/widgets/menu_drawer.dart';
-import '../../core/network/api_service.dart';
+import '../../core/network/movie_service.dart';
 import '../../data/models/movie_model.dart';
 
 class MoviePage extends StatelessWidget {
@@ -12,7 +12,7 @@ class MoviePage extends StatelessWidget {
       appBar: AppBar(title: const Text('Popular Movies')),
       drawer: const MenuDrawer(),
       body: FutureBuilder<List<MovieModel>>(
-        future: ApiService().fetchPopularMovies(),
+        future: MovieService().fetchPopularMovies(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

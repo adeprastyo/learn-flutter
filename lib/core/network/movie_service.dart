@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../../data/models/movie_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class ApiService {
+class MovieService {
   final String accessToken = dotenv.env['API_KEY']!;
   final String baseUrl = dotenv.env['BASE_URL']!;
 

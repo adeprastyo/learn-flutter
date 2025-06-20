@@ -4,11 +4,21 @@ import 'package:flutter_application_1/presentation/pages/home_page.dart';
 import 'package:flutter_application_1/presentation/pages/local_state_page.dart';
 import 'package:flutter_application_1/presentation/pages/login.dart';
 import 'package:flutter_application_1/presentation/pages/movie_page.dart';
+import 'package:flutter_application_1/presentation/pages/provider_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+import 'providers/user.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,10 +32,11 @@ class MyApp extends StatelessWidget {
         initialRoute: "/",
         routes: {
           "/": (context) => const MyHomePage(title: "Home"),
-          "/login": (context) => const LoginPage(title: "Woi Login Page"),
+          "/login": (context) => const LoginPage(),
           "/movies": (context) => const MoviePage(),
           "/local-state": (context) => const LocalState(),
           "/edit-profile": (context) => const EditProfile(),
+          "/provider-fake-api": (context) => const ProviderPage(),
         });
   }
 }

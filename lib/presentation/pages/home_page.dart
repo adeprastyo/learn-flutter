@@ -11,13 +11,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // int _counter = 0;
+  final TextEditingController _nameController = TextEditingController();
+  String name = "Jon Snow";
 
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
+  void _changeName() {
+    setState(() {
+      name = _nameController.text;
+    });
+
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,58 +30,88 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         drawer: const MenuDrawer(),
         body: Container(
-          decoration: BoxDecoration(color: Colors.grey.shade200),
-          child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade50,
-                          borderRadius: BorderRadius.circular(12),
-                          border:
-                              Border.all(color: Colors.blue.shade200, width: 1),
-                        ),
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          children: const <Widget>[
-                            Icon(Icons.phone_android,
-                                size: 100, color: Colors.blue),
+            decoration: const BoxDecoration(color: Colors.white),
+            padding: const EdgeInsets.all(20),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade50,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.blue.shade200, width: 1),
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        const Icon(Icons.account_circle,
+                            size: 100, color: Colors.blue),
+                        const SizedBox(height: 5),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
                             Text(
-                              'Belajar Flutter untuk Pemula',
-                              style: TextStyle(
-                                  fontSize: 24, fontFamily: "Serif", height: 1),
-                              textAlign: TextAlign.center,
+                              name,
+                              style: const TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  height: 1),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text("Ganti Nama"),
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextField(
+                                            controller: _nameController,
+                                            decoration: const InputDecoration(
+                                              border: OutlineInputBorder(),
+                                              hintText: "Masukkan teks...",
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              ElevatedButton(
+                                                  onPressed: _changeName,
+                                                  child: const Text("Update")),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      // actions: [
+                                      //   TextButton(
+                                      //     child: const Text("Tutup"),
+                                      //     onPressed: () {
+                                      //       Navigator.of(context).pop();
+                                      //     },
+                                      //   ),
+                                      // ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.edit_rounded,
+                                size: 18,
+                              ),
                             ),
                           ],
-                        ),
-                      ),
+                        )
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.green.shade50,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                              color: Colors.green.shade200, width: 1),
-                        ),
-                        padding: const EdgeInsets.all(16.0),
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: const <Widget>[
-                            Text("Kolom pertama"),
-                            Text("Kolom kedua"),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ])),
-        ));
+                  ),
+                ])));
   }
 }
